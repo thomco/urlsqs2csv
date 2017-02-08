@@ -1,0 +1,4 @@
+make output file match input file basename by default
+add command-line handling
+add tests?
+
