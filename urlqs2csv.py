@@ -13,12 +13,14 @@ def get_query_params(url, params=None):
     else:
         return query
 
-def urlqs2csv(urls, csvfile, params=None):
+def urlqs2csv(urls, csvfile=None, params=None):
 
     urls_file = Path(urls)
+    if csvfile == None:
+        csvfile = urls_file.stem + '.csv.'
     url_params = [get_query_params(url, params) for url in urls_file.open()]
 
-    with open(csvfile, 'w') as f:
+    with open(csvfile, 'w', newline='') as f:
         if params:
             fieldnames = params
         else:
@@ -29,4 +31,4 @@ def urlqs2csv(urls, csvfile, params=None):
 
 if __name__ == "__main__":
     # execute only if run as a script
-    urlqs2csv(urls, CSV_FILE, CONVERT_EVENT_PARAMS)
+    urlqs2csv(urls, params=CONVERT_EVENT_PARAMS)
